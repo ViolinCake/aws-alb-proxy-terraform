@@ -1,0 +1,6 @@
+cluster1 pub-ec2-public-ip  44.223.7.234
+cluster1 pub-ec2-private-ip 10.0.0.72
+cluster1 prv-ec2-private-ip  10.0.1.182
+cluster2 pub-ec2-public-ip  18.234.161.175
+cluster2 pub-ec2-private-ip 10.0.2.221
+cluster2 prv-ec2-private-ip  10.0.3.193

@@ -116,3 +116,23 @@ module "privateBalancer" {
 
 }
 
+
+
+resource "null_resource" "write_ips" {
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "cluster1 pub-ec2-public-ip  ${module.cluster1.public_ec2_public_ip}" > all-ips.txt
+      echo "cluster1 pub-ec2-private-ip ${module.cluster1.public_ec2_private_ip}" >> all-ips.txt
+      echo "cluster1 prv-ec2-private-ip  ${module.cluster1.private_ec2_ip}" >> all-ips.txt
+      
+      echo "cluster2 pub-ec2-public-ip  ${module.cluster2.public_ec2_public_ip}" >> all-ips.txt
+      echo "cluster2 pub-ec2-private-ip ${module.cluster2.public_ec2_private_ip}" >> all-ips.txt
+      echo "cluster2 prv-ec2-private-ip  ${module.cluster2.private_ec2_ip}" >> all-ips.txt
+      
+    EOT
+  }
+
+  triggers = {
+    always_run = timestamp()
+  }
+}
